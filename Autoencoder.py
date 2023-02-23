@@ -43,8 +43,8 @@ def create_autoencoder():
     return model
 
 
-def train_autoencoder(autoencoder, x_train, x_train_noise, x_test, x_test_noise, epochs=1000, batch_size=128):
-    autoencoder.fit(x_train, x_train_noise,
+def train_autoencoder(autoencoder, x_train_noise, x_train, x_test_noise, x_test, epochs=1000, batch_size=128):
+    autoencoder.fit(x_train_noise, x_train,
                     epochs=epochs,
                     batch_size=batch_size,
                     shuffle=True,
