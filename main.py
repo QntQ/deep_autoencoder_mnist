@@ -10,8 +10,8 @@ if __name__ == "__main__":
     training = normalize(data=training)
     testing = normalize(data=testing)
 
-    training_noise = apply_noise_to_data(training, 0.5)
-    testing_noise = apply_noise_to_data(testing, 0.5)
+    training_noise = apply_noise_to_data(training, 0.75)
+    testing_noise = apply_noise_to_data(testing, 0.75)
 
     if os.path.exists("autoencoder.h5"):
         model = keras.models.load_model("autoencoder.h5")
@@ -20,7 +20,7 @@ if __name__ == "__main__":
         model = create_autoencoder()
         print("created model")
     model = train_autoencoder(
-        model, training_noise, training, testing_noise, testing, epochs=200, batch_size=32)
+        model, training_noise, training, testing_noise, testing, epochs=250, batch_size=32)
     print("trained model")
     model.save("autoencoder.h5")
     print("saved model")
