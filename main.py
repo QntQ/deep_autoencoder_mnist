@@ -8,10 +8,10 @@ if __name__ == "__main__":
     # training = load_images(True)
     # testing = load_images(False)
     (training, _), (testing, _) = keras.datasets.fashion_mnist.load_data()
-    training = training[:2000]
-    testing = testing[:200]
     training = normalize(data=training)
     testing = normalize(data=testing)
+    training = training[:200]
+    testing = testing[:20]
 
     training_noise = apply_noise_to_data(training, 0.1)
     testing_noise = apply_noise_to_data(testing, 0.1)
