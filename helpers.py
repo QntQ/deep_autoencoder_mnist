@@ -44,7 +44,7 @@ def get_data(mode: bool = True):
 def apply_noise_single_image(image, noise_amount):
     x_shape = image.shape[0]
 
-    noise = np.random.normal(0, scale=noise_amount, size=(x_shape))
+    noise = np.random.normal(0.5, scale=noise_amount, size=(x_shape))
     noisy_image = image + noise
     noisy_image = np.clip(noisy_image, 0, 1)
     return noisy_image
