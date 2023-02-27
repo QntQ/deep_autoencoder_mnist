@@ -42,7 +42,7 @@ def get_data(mode: bool = True):
 
 
 def apply_noise_single_image(image, noise_amount):
-    x_shape = image.shape[0]
+    x_shape = 784
 
     noise = np.random.normal(0.5, scale=noise_amount, size=(x_shape))
     noisy_image = image + noise
@@ -60,6 +60,7 @@ def apply_noise_to_data(images, noise_amount):
 
 
 def normalize(data):
+    data = data.flatten()
     return data / 255
 
 
