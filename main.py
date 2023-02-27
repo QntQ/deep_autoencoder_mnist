@@ -8,6 +8,8 @@ if __name__ == "__main__":
     # training = load_images(True)
     # testing = load_images(False)
     (training, _), (testing, _) = keras.datasets.fashion_mnist.load_data()
+    training = training[:2000]
+    testing = testing[:200]
     training = normalize(data=training)
     testing = normalize(data=testing)
 
@@ -20,12 +22,12 @@ if __name__ == "__main__":
     else:
         model = create_autoencoder()
         print("created model")
-    # model = train_autoencoder(
-    #     model, training_noise, training, testing_noise, testing, epochs=50, batch_size=16)
-    # print("trained model")
-    # model.save("autoencoder.h5")
-    # print("saved model")
-    # print("evaluating model")
+    model = train_autoencoder(
+        model, training_noise, training, testing_noise, testing, epochs=50, batch_size=16)
+    print("trained model")
+    model.save("autoencoder.h5")
+    print("saved model")
+    print("evaluating model")
     eval_pics = []
     num_pics = 100
 
