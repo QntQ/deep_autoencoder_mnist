@@ -60,7 +60,7 @@ def apply_noise_to_data(images, noise_amount):
 
 
 def normalize(data):
-    data = data.flatten()
+
     return data / 255
 
 
