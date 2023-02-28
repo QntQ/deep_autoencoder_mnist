@@ -14,8 +14,8 @@ if __name__ == "__main__":
     training = training[:10000].reshape(10000, 784)
     testing = testing[:1000].reshape(1000, 784)
 
-    training_noise = apply_noise_to_data(training, 0.1)
-    testing_noise = apply_noise_to_data(testing, 0.1)
+    training_noise = apply_noise_to_data(training, 0.2)
+    testing_noise = apply_noise_to_data(testing, 0.2)
 
     if os.path.exists("autoencoder.h5"):
         model = keras.models.load_model("autoencoder.h5")
@@ -28,14 +28,6 @@ if __name__ == "__main__":
     model.save("autoencoder.h5")
     print("saved model")
     print("evaluating model")
-    eval_pics = []
-    num_pics = 100
 
-for i in range(num_pics):
-    predict_img = model.predict(x=np.array([testing_noise[i]]))
-    predict_img = denormalize(data=predict_img)
-    test_img = denormalize(data=np.array([testing_noise[i]]))
-    cv2.imwrite("eval/" + str(i) + "_predict.jpg",
-                predict_img.reshape(28, 28))
-    cv2.imwrite("eval/" + str(i) + ".jpg",
-                test_img.reshape(28, 28))
+    
+    evaluate(model, testing, testing_noise, num_output=10)

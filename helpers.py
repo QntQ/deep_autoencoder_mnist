@@ -66,3 +66,15 @@ def normalize(data):
 
 def denormalize(data):
     return data * 255
+
+def evaluate(model, testing, testing_noise, num_output):
+    predicted = model.predict(testing_noise)
+    indices =np.random.randint(size = num_output, low=0, high=len(testing))
+    error = 0
+    for i in range(len(testing)):
+        error += (predicted - testing) **2
+    error /= len(testing)
+    for i in indices:
+        cv2.imwrite(f"/eval/testing{i}.jpg", testing[i])
+        cv2.imwrite(f"/eval/predict{i}.jpg", predicted[i])
+        cv2.imwrite(f"/eval/testing_noise{i}.jpg", testing_noise[i])
