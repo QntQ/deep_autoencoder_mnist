@@ -67,14 +67,20 @@ def normalize(data):
 def denormalize(data):
     return data * 255
 
+
 def evaluate(model, testing, testing_noise, num_output):
     predicted = model.predict(testing_noise)
-    indices =np.random.randint(size = num_output, low=0, high=len(testing))
+    indices = np.random.randint(size=num_output, low=0, high=len(testing))
     error = 0
     for i in range(len(testing)):
-        error += (predicted - testing) **2
-    error /= len(testing)
+        error = np.sum((predicted[i].astype("float") -
+                        testing[i].astype("float")) ** 2)
+        error /= len(testing)
+    print(error)
     for i in indices:
-        cv2.imwrite(f"/eval/testing{i}.jpg", testing[i])
-        cv2.imwrite(f"/eval/predict{i}.jpg", predicted[i])
-        cv2.imwrite(f"/eval/testing_noise{i}.jpg", testing_noise[i])
+        cv2.imwrite(f"./eval/testing{i}.jpg",
+                    denormalize(testing[i].reshape(28, 28)))
+        cv2.imwrite(f"./eval/predict{i}.jpg",
+                    denormalize(predicted[i].reshape(28, 28)))
+        cv2.imwrite(f"./eval/testing_noise{i}.jpg",
+                    denormalize(testing_noise[i].reshape(28, 28)))
