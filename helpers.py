@@ -41,20 +41,21 @@ def get_data(mode: bool = True):
     return images, labels
 
 
-def apply_noise_single_image(image, noise_amount):
+def apply_noise_single_image(image, noise_amount, random: bool = False):
     x_shape = 784
-
+    if random:
+        noise_amount = np.random.random_sample()*0.5
     noise = np.random.normal(0.5, scale=noise_amount, size=(x_shape))
     noisy_image = image + noise
     noisy_image = np.clip(noisy_image, 0, 1)
     return noisy_image
 
 
-def apply_noise_to_data(images, noise_amount):
+def apply_noise_to_data(images, noise_amount, random: bool = False):
     noisy_images = []
     for image in images:
         noisy_images.append(apply_noise_single_image(
-            image, noise_amount))
+            image, noise_amount, random=random))
     noisy_images = np.asarray(noisy_images)
     return noisy_images
 

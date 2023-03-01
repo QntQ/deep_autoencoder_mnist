@@ -11,8 +11,8 @@ if __name__ == "__main__":
     training = normalize(data=training)
     testing = normalize(data=testing)
 
-    training = training[:10000].reshape(10000, 784)
-    testing = testing[:1000].reshape(1000, 784)
+    training = training[:30000].reshape(30000, 784)
+    testing = testing[:3000].reshape(3000, 784)
 
     training_noise = apply_noise_to_data(training, 0.2)
     testing_noise = apply_noise_to_data(testing, 0.2)
@@ -24,7 +24,7 @@ if __name__ == "__main__":
         model = create_autoencoder()
         print("created model")
         model = train_autoencoder(
-            model, training_noise, training, testing_noise, testing, epochs=50, batch_size=16)
+            model, training_noise, training, testing_noise, testing, epochs=150, batch_size=32)
         print("trained model")
     model.save("autoencoder.h5")
     print("saved model")
