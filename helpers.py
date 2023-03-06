@@ -93,7 +93,7 @@ def add_artifact_to_img(img):
     artifact_x = np.random.randint(0, 28 - artifact_size_x)
     artifact_y = np.random.randint(0, 28 - artifact_size_y)
 
-    artifact = np.zeros(shape=(img.shape()))
+    artifact = np.zeros(shape=(img.shape))
     for i in range(artifact_size_x):
         for j in range(artifact_size_y):
             artifact[artifact_x + i][artifact_y + j] = 255
