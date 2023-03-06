@@ -18,7 +18,7 @@ if __name__ == "__main__":
     testing = testing[:10000].reshape(10000, 784)
 
     training_noise = training_noise[:60000].reshape(60000, 784)
-    testing_noise = testing_noise[:3000].reshape(3000, 784)
+    testing_noise = testing_noise[:10000].reshape(10000, 784)
 
     if os.path.exists("autoencoder.h5"):
         model = keras.models.load_model("autoencoder.h5")
