@@ -88,8 +88,8 @@ def evaluate(model, testing, testing_noise, num_output):
 
 
 def add_artifact_to_img(img):
-    artifact_size_x = np.random.randint(2, 3)
-    artifact_size_y = np.random.randint(2, 3)
+    artifact_size_x = np.random.randint(5, 10)
+    artifact_size_y = np.random.randint(5, 10)
     artifact_x = np.random.randint(0, 28 - artifact_size_x)
     artifact_y = np.random.randint(0, 28 - artifact_size_y)
 
@@ -97,7 +97,7 @@ def add_artifact_to_img(img):
     for i in range(artifact_size_x):
         for j in range(artifact_size_y):
             artifact[artifact_x + i][artifact_y + j] = 1
-    return img + artifact
+    return np.clip(img + artifact, 0, 1)
 
 
 def add_artifact_to_data(data):
