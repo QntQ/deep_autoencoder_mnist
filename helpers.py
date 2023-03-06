@@ -85,3 +85,22 @@ def evaluate(model, testing, testing_noise, num_output):
                     denormalize(predicted[i].reshape(28, 28)))
         cv2.imwrite(f"./eval/testing_noise{i}.jpg",
                     denormalize(testing_noise[i].reshape(28, 28)))
+
+
+def add_artifact_to_img(img):
+    artifact_size_x = np.random.randint(5, 10)
+    artifact_size_y = np.random.randint(5, 10)
+    artifact_x = np.random.randint(0, 28 - artifact_size_x)
+    artifact_y = np.random.randint(0, 28 - artifact_size_y)
+
+    artifact = np.zeros(shape=(img.shape()))
+    for i in range(artifact_size_x):
+        for j in range(artifact_size_y):
+            artifact[artifact_x + i][artifact_y + j] = 255
+    return img + artifact
+
+
+def add_artifact_to_data(data):
+    for i in range(len(data)):
+        data[i] = add_artifact_to_img(data[i])
+    return data
