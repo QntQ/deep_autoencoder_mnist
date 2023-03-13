@@ -29,7 +29,7 @@ if __name__ == "__main__":
         model = train_autoencoder(
             model, training, training, testing, testing, epochs=1000, batch_size=32)
         model = train_autoencoder(
-            model, training_noise, training, testing_noise, testing, epochs=500, batch_size=32)
+            model, training_noise, training, testing_noise, testing, epochs=1000, batch_size=32)
         print("trained model")
     model.save("autoencoder.h5")
     print("saved model")

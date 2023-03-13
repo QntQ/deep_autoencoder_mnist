@@ -96,7 +96,7 @@ def add_artifact_to_img(img):
     artifact = np.zeros(shape=(img.shape))
     for i in range(artifact_size_x):
         for j in range(artifact_size_y):
-            artifact[artifact_x + i][artifact_y + j] = 1
+            artifact[artifact_x + i][artifact_y + j] = 0
     return np.clip(img + artifact, 0, 1)
 
 
